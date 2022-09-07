@@ -59,6 +59,7 @@ function createOverlay() {
       -webkit-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       -moz-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       display:flex;
+      cursor: move;
       z-index:1001;`;
 
   _overlay.innerHTML = `<p class="title">Hybrid Threshold Due/Exceeded</p>
@@ -142,6 +143,7 @@ function monitorThresholdsDC() {
 function displayIssuesOverlay(issues) {
   console.table(issues);
   createOverlay();
+  dragElement(document.querySelector(".info-overlay"));
   let tpl = ``;
   issues.forEach(({ TimeStamp, SiteID, SiteName, DCVolt, SysVolt }) => {
     tpl =
@@ -159,3 +161,48 @@ function displayIssuesOverlay(issues) {
 
 let _timer = setInterval(monitorThresholdsDC, 120000);
 //monitorThresholdsDC();
+
+//Drag implementation
+
+function dragElement(elmnt) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+   
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = elmnt.offsetTop - pos2 + "px";
+    elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
