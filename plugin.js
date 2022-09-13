@@ -113,7 +113,7 @@ function getCurrentSysVoltage(sys) {
   return parseFloat(sys);
 }
 
-function monitorThresholdsDC() {
+function monitorThresholds() {
   let issues = [];
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
@@ -159,8 +159,7 @@ function displayIssuesOverlay(issues) {
   document.querySelector(".body tbody").innerHTML = tpl;
 }
 
-let _timer = setInterval(monitorThresholdsDC, 120000);
-//monitorThresholdsDC();
+
 
 //Drag implementation
 
@@ -206,3 +205,10 @@ function dragElement(elmnt) {
     document.onmousemove = null;
   }
 }
+
+ function start(){
+   monitorThresholds()
+   setTimeout(start,90000)
+ }
+ 
+ start()
