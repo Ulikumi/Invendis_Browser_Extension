@@ -1,3 +1,4 @@
+ let issues = [];
 function tableToJSON() {
   return Array.from(document.querySelectorAll(".gridRowStyle"))
     .concat(Array.from(document.querySelectorAll(".gridAlternateRow")))
@@ -61,7 +62,7 @@ function createOverlay() {
       display:flex;
       z-index:1001;`;
 
-  _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating</p>
+  _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating | Count ${issues.length}</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
       .title{
@@ -116,7 +117,7 @@ function getCurrentSysVoltage(sys) {
 }
 
 function showNotUpdating() {
-  let issues = [];
+ 
   let timeDiff = null;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
