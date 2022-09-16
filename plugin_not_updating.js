@@ -8,7 +8,7 @@ function tableToJSON() {
         SiteName: list.children[4].children[0].value.trim(),
         SysVolt: list.children[11].innerText.trim(),
         DCVolt: list.children[16].innerText.trim(),
-        RowRef: list
+        RowRef: list,
       };
     });
 }
@@ -36,7 +36,7 @@ function issuesObject(issuesArray) {
       SiteID: tr.children[3].children[0].value.trim(),
       SiteName: tr.children[4].children[0].value.trim(),
       SysVolt: tr.children[11].innerText.trim(),
-      DCVolt: tr.children[16].innerText.trim()
+      DCVolt: tr.children[16].innerText.trim(),
     };
   });
 }
@@ -62,7 +62,7 @@ function createOverlay() {
       cursor: move;
       z-index:1001;`;
 
-  _overlay.innerHTML = `<p class="title">Hybrid Threshold Due/Exceeded</p>
+  _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
 td{
@@ -113,31 +113,28 @@ function getCurrentSysVoltage(sys) {
   return parseFloat(sys);
 }
 
-function monitorThresholds() {
+function showNotUpdating() {
   let issues = [];
+  let timeDiff = null;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
     : "";
   tableToJSON().forEach(
     ({ SiteID, TimeStamp, SiteName, DCVolt, SysVolt, RowRef }) => {
-      if (isHybrid(SiteName))
-        toShow({ SiteName, DCVolt, SysVolt })
-          ? issues.push({
-              TimeStamp,
-              SiteID,
-              SiteName,
-              DCVolt,
-              SysVolt,
-              RowRef
-            })
-          : "";
+      if (isHybrid(SiteName)) {
+        timeDiff =
+          (new Date().getTime() - new Date(TimeStamp).getTime()) /
+          (1000 * 60 * 60);
+
+        if (timeDiff > 1)
+          issues.push({ SiteID, TimeStamp, SiteName, DCVolt, SysVolt });
+      }
     }
   );
   if (issues) {
-    issues.forEach(({ RowRef }) => highlightIssue(RowRef));
+    // console.table(issues);
+    displayIssuesOverlay(issues);
   }
-
-  displayIssuesOverlay(issues);
 }
 
 function displayIssuesOverlay(issues) {
@@ -159,7 +156,6 @@ function displayIssuesOverlay(issues) {
   document.querySelector(".body tbody").innerHTML = tpl;
 }
 
-
 //Drag implementation
 
 function dragElement(elmnt) {
@@ -170,7 +166,6 @@ function dragElement(elmnt) {
   if (document.getElementById(elmnt.id + "header")) {
     document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
   } else {
-   
     elmnt.onmousedown = dragMouseDown;
   }
 
@@ -205,8 +200,8 @@ function dragElement(elmnt) {
   }
 }
 
-function start(){
-  monitorThresholds()
-  setTimeout(monitorThresholds,90000)
+function start() {
+  showNotUpdating();
+  setTimeout(showNotUpdating,90000)
 }
-  start()
+start();
