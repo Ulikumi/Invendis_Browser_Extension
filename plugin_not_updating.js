@@ -59,12 +59,14 @@ function createOverlay() {
       -webkit-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       -moz-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       display:flex;
-      cursor: move;
       z-index:1001;`;
 
   _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
+      .title{
+         cursor: move;
+         }
 td{
   border:1px solid white;
   padding:0.3em;
