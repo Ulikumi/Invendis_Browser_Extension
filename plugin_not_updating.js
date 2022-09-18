@@ -2542,6 +2542,7 @@ function showNotUpdating() {
     console.table(issues);
     displayIssuesOverlay(issues);
     attachDownload();
+     issues = [];
   }
 }
 
@@ -2621,7 +2622,6 @@ function attachDownload() {
 }
 
 function start() {
-  issues = [];
   showNotUpdating();
   setTimeout(start, 90000);
 }
