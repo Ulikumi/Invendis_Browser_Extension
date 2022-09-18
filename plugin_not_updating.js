@@ -2621,7 +2621,8 @@ function attachDownload() {
 }
 
 function start() {
+  issues = [];
   showNotUpdating();
-  //setTimeout(showNotUpdating, 90000);
+  setTimeout(showNotUpdating, 90000);
 }
 start();
