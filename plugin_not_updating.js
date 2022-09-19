@@ -2539,6 +2539,9 @@ function showNotUpdating() {
     }
   );
   if (issues) {
+    issues.sort((a,b) =>{
+      return (a.TL > b.TL)?1:-1
+    })
     displayIssuesOverlay(issues);
     attachDownload();
      issues = [];
