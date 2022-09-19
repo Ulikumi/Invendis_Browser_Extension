@@ -2435,8 +2435,8 @@ function createOverlay() {
   let _overlay = document.createElement("div");
   _overlay.classList.add("info-overlay");
   _overlay.style.cssText = `position:fixed;
-      top:163px;
-      left:1200px;
+      top:2px;
+      left:1112px;
       padding:9px;
       background-color:#1565c0 ; 
       width:auto;
@@ -2510,6 +2510,7 @@ function getCurrentSysVoltage(sys) {
 }
 
 function showNotUpdating() {
+  console.log(NotUpdatingIssues)
   let timeDiff = null;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
