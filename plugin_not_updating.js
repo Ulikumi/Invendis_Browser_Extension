@@ -2623,11 +2623,11 @@ function attachDownload() {
     SysVolt,
     name,}) =>{
 return {
-  'Last Updated Time':TimeStamp,
+  'Last Updated @':TimeStamp,
   'Site ID':SiteID,
   'Site Name':SiteName,
   'DC Voltage':DCVolt,
-  'System Voltage':SysVolt,
+  'Sys Voltage':SysVolt,
   'Team Lead':name
 }
   })
