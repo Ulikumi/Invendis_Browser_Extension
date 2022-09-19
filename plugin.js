@@ -1,3 +1,4 @@
+let issues = [];
 function tableToJSON() {
   return Array.from(document.querySelectorAll(".gridRowStyle"))
     .concat(Array.from(document.querySelectorAll(".gridAlternateRow")))
@@ -20,7 +21,6 @@ function isHybrid(siteName) {
       .substr(-4))
   return (result >15 && result < 60)? true:false;
 }
-
 
 function toShow({ SiteName, DCVolt, SysVolt }) {
   let show = false;
@@ -123,7 +123,6 @@ function getCurrentSysVoltage(sys) {
 }
 
 function monitorThresholds() {
-  let issues = [];
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
     : "";
@@ -150,7 +149,6 @@ function monitorThresholds() {
 }
 
 function displayIssuesOverlay(issues) {
-  console.table(issues);
   createOverlay();
   dragElement(document.querySelector(".info-overlay"));
   let tpl = ``;
@@ -216,6 +214,6 @@ function dragElement(elmnt) {
 
 function start(){
   monitorThresholds()
-  setTimeout(monitorThresholds,90000)
+  setTimeout(start,90000)
 }
   start()
