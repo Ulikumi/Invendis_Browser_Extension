@@ -2510,7 +2510,6 @@ function getCurrentSysVoltage(sys) {
 }
 
 function showNotUpdating() {
-  console.log(`Number Of Issues: ${issues.length})
   let timeDiff = null;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
@@ -2540,7 +2539,6 @@ function showNotUpdating() {
     }
   );
   if (issues) {
-    //console.table(issues);
     displayIssuesOverlay(issues);
     attachDownload();
      issues = [];
@@ -2549,7 +2547,6 @@ function showNotUpdating() {
 }
 
 function displayIssuesOverlay(issues) {
-  console.table(issues);
   createOverlay();
   dragElement(document.querySelector(".info-overlay"));
   let tpl = ``;
