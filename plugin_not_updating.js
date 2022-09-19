@@ -2470,12 +2470,12 @@ function createOverlay() {
       <table class="tg">
   <thead>
     <tr>
-      <td class="tg-0lax">Time-Stamp</td>
+      <td class="tg-0lax">Last Updated Time</td>
       <td class="tg-0lax">Site ID</td>
       <td class="tg-0lax">Site Name</td>
-      <td class="tg-0lax">DCV</td>
-      <td class="tg-0lax">SysV</td>
-      <td class="tg-0lax">TL</td>
+      <td class="tg-0lax">DC Voltage</td>
+      <td class="tg-0lax">System Voltage</td>
+      <td class="tg-0lax">Team Lead</td>
       <td class="tg-0lax"><a download='file.csv' id='download'> Download</a></td>
     </tr>
   </thead>
