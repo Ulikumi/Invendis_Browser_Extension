@@ -13,14 +13,12 @@ function tableToJSON() {
     });
 }
 function isHybrid(siteName) {
- return parseFloat(
+  let result = parseFloat(
     siteName
       .toLocaleLowerCase()
       .replaceAll(/[a-z]*[_]*/g, "")
-      .substr(-4)
-  ) > 15
-    ? true
-    : false;
+      .substr(-4))
+  return (result >15 && result < 60)? true:false;
 }
 
 
