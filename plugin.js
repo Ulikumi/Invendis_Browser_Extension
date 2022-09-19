@@ -13,8 +13,16 @@ function tableToJSON() {
     });
 }
 function isHybrid(siteName) {
-  return siteName.toLowerCase().includes("_h");
+ return parseFloat(
+    siteName
+      .toLocaleLowerCase()
+      .replaceAll(/[a-z]*[_]*/g, "")
+      .substr(-4)
+  ) > 15
+    ? true
+    : false;
 }
+
 
 function toShow({ SiteName, DCVolt, SysVolt }) {
   let show = false;
