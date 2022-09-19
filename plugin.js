@@ -123,6 +123,7 @@ function getCurrentSysVoltage(sys) {
 }
 
 function monitorThresholds() {
+  issues = []
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
     : "";
