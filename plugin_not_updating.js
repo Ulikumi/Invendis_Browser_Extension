@@ -2615,10 +2615,26 @@ function dragElement(elmnt) {
 }
 
 function attachDownload() {
-  const keys = Object.keys(NotUpdatingIssues[0]);
+ 
+  let formatedCSV = NotUpdatingIssues.map( ({ SiteID,
+    TimeStamp,
+    SiteName,
+    DCVolt,
+    SysVolt,
+    name,}) =>{
+return {
+  'Last Updated Time':TimeStamp,
+  'Site ID':SiteID,
+  'Site Name':SiteName,
+  'DC Voltage':DCVolt,
+  'System Voltage':SysVolt,
+  'Team Lead':name
+}
+  })
+  const keys = Object.keys(formatedCSV[0]);
   const CSV = [
     keys.join(","),
-    NotUpdatingIssues.map((row) => keys.map((key) => row[key]).join(",")).join("\n"),
+    formatedCSV.map((row) => keys.map((key) => row[key]).join(",")).join("\n"),
   ].join("\n");
   const csvBlob = new Blob([CSV]);
   const link = document.getElementById("download");
