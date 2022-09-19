@@ -1,4 +1,4 @@
-let issues = [];
+let NotUpdatingIssues = [];
 let siteData = [
   {
     ID: 604261,
@@ -2452,7 +2452,7 @@ function createOverlay() {
       z-index:1001;`;
 
   _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating | Count ${
-    issues.length
+  NotUpdatingIssues.length
   }| Last run: ${Date().toString().substr(4, 18)}</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
@@ -2525,7 +2525,7 @@ function showNotUpdating() {
           let TL = siteData.find((site) => site.ID == parseInt(SiteID));
           let name = TL.TL;
           (TimeStamp.includes("09/18/2022") ||  TimeStamp.includes("09/19/2022"))
-            ? issues.push({
+            ? NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
                 SiteName,
@@ -2538,13 +2538,15 @@ function showNotUpdating() {
       }
     }
   );
-  if (issues) {
-    issues.sort((a,b) =>{
-      return (a.TL > b.TL)?1:-1
+  /* console.log(NotUpdatingIssues)
+  return false; */
+  if (NotUpdatingIssues.length > 0) {
+    let sortedIssues= NotUpdatingIssues.sort((a,b) =>{
+      return (a.name.toLowerCase() > b.name.toLowerCase())?1:-1
     })
-    displayIssuesOverlay(issues);
+    displayIssuesOverlay(sortedIssues);
     attachDownload();
-     issues = [];
+     NotUpdatingIssues = [];
     
   }
 }
@@ -2613,10 +2615,10 @@ function dragElement(elmnt) {
 }
 
 function attachDownload() {
-  const keys = Object.keys(issues[0]);
+  const keys = Object.keys(NotUpdatingIssues[0]);
   const CSV = [
     keys.join(","),
-    issues.map((row) => keys.map((key) => row[key]).join(",")).join("\n"),
+    NotUpdatingIssues.map((row) => keys.map((key) => row[key]).join(",")).join("\n"),
   ].join("\n");
   const csvBlob = new Blob([CSV]);
   const link = document.getElementById("download");
