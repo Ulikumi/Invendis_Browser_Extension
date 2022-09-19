@@ -71,11 +71,11 @@ function createOverlay() {
   _overlay.innerHTML = `<p class="title">Hybrid Threshold Due/Exceeded</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
-td{
+.info-overlay td{
   border:1px solid white;
   padding:0.3em;
 }
-thead td{
+.info-overlay thead td{
   background-color:#be4d25;
 }
       </style>
