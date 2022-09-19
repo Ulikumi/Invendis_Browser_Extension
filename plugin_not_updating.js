@@ -2524,7 +2524,7 @@ function showNotUpdating() {
         if (timeDiff > 1) {
           let TL = siteData.find((site) => site.ID == parseInt(SiteID));
           let name = TL.TL;
-          TimeStamp.includes("09/18/2022")
+          (TimeStamp.includes("09/18/2022") ||  TimeStamp.includes("09/19/2022"))
             ? issues.push({
                 SiteID,
                 TimeStamp,
