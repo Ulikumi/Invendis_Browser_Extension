@@ -66,6 +66,7 @@ function createOverlay() {
       -moz-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       display:flex;
       cursor: move;
+      max-height:15%
       z-index:1001;`;
 
   _overlay.innerHTML = `<p class="title">Hybrid Threshold Due/Exceeded</p>
