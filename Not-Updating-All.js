@@ -2402,7 +2402,7 @@ function createOverlay() {
   _overlay.classList.add("info-overlay");
   _overlay.style.cssText = `position:fixed;
       top:2px;
-      left:1112px;
+      left:1046px;
       padding:9px;
       background-color:#1565c0 ; 
       width:auto;
@@ -2415,11 +2415,11 @@ function createOverlay() {
       -webkit-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       -moz-box-shadow: 1px 8px 5px 0px rgba(0,0,0,0.75);
       display:flex;
-      max-height:100%;
+      max-height:fit-content;
       overflow:hidden;
       z-index:1001;`;
 
-  _overlay.innerHTML = `<p class="title">Hybrid Sites Not Updating | Count ${
+  _overlay.innerHTML = `<p class="title">Sites Not Updating | Count ${
   NotUpdatingIssues.length
   }| Last run: ${Date().toString().substr(4, 18)}</p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
@@ -2443,6 +2443,7 @@ function createOverlay() {
       <td class="tg-0lax">Site Name</td>
       <td class="tg-0lax">DC Voltage</td>
       <td class="tg-0lax">Sys Voltage</td>
+      <td class="tg-0lax">Hrs Not Updating</td>
       <td class="tg-0lax">Team Lead</td>
       <td class="tg-0lax"><a download='Hybrid_Sites_Not_Updating.csv' id='download'> Download</a></td>
     </tr>
@@ -2468,7 +2469,7 @@ function showNotUpdating() {
         if (timeDiff > 1) {
           let _site = SiteData.find((site) => site.ID == parseInt(SiteID));
           let name = _site.TL;
-          TimeStamp.includes("09/23/2022") || TimeStamp.includes("09/24/2022") 
+          TimeStamp.includes("09/27/2022") || TimeStamp.includes("09/28/2022") 
             ? NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
@@ -2476,6 +2477,7 @@ function showNotUpdating() {
                 DCVolt,
                 SysVolt,
                 name,
+                'Hrs':timeDiff
               })
             : "";
         }
@@ -2502,7 +2504,7 @@ function displayIssuesOverlay(issues) {
   dragElement(document.querySelector(".info-overlay"));
   let tpl = ``;
   if(issues < 30){
-    issues.forEach(({ TimeStamp, SiteID, SiteName, DCVolt, SysVolt, name }) => {
+    issues.forEach(({ TimeStamp, SiteID, SiteName, DCVolt, SysVolt, name ,Hrs}) => {
       tpl =
         tpl +
         `<tr>
@@ -2511,12 +2513,13 @@ function displayIssuesOverlay(issues) {
       <td>${SiteName}</td>
       <td>${DCVolt}</td>
       <td>${SysVolt}</td>
+      <td>${Math.ceil(Hrs)}</td>
        <td>${name}</td>
     </tr>`;
     });
   
   }
-  issues.slice(0,35).forEach(({ TimeStamp, SiteID, SiteName, DCVolt, SysVolt, name }) => {
+  issues.slice(0,35).forEach(({ TimeStamp, SiteID, SiteName, DCVolt, SysVolt, name ,Hrs}) => {
     tpl =
       tpl +
       `<tr>
@@ -2525,6 +2528,7 @@ function displayIssuesOverlay(issues) {
     <td>${SiteName}</td>
     <td>${DCVolt}</td>
     <td>${SysVolt}</td>
+    <td>${Math.ceil(Hrs)}</td>
      <td>${name}</td>
   </tr>`;
   });
@@ -2583,13 +2587,14 @@ function attachDownload() {
     SiteName,
     DCVolt,
     SysVolt,
-    name,}) =>{
+    name,Hrs}) =>{
 return {
   'Last Updated Time':TimeStamp,
   'Site ID':SiteID,
   'Site Name':SiteName,
   'DC Voltage':DCVolt,
   'System Voltage':SysVolt,
+  'Hours Not Updating':Math.ceil(Hrs),
   'Team Lead':name
 }
   })

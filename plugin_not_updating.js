@@ -1444,7 +1444,7 @@ function showNotUpdating() {
         if (timeDiff > 1) {
           let TL = HybridSiteData.find((site) => site.ID == parseInt(SiteID));
           let name = TL.TL;
-          TimeStamp.includes("09/23/2022") || TimeStamp.includes("09/24/2022") 
+          TimeStamp.includes("09/27/2022") || TimeStamp.includes("09/28/2022") 
             ? NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
