@@ -2469,7 +2469,10 @@ function showNotUpdating() {
         if (timeDiff > 1) {
           let _site = SiteData.find((site) => site.ID == parseInt(SiteID));
           let name = _site.TL;
-          TimeStamp.includes("09/27/2022") || TimeStamp.includes("09/28/2022") 
+          let date = new Date();
+         let today = date.toLocaleDateString()
+          let yesterday =  new Date(date.setDate(date.getDate() - 1)).toLocaleDateString()
+          TimeStamp.includes(yesterday) || TimeStamp.includes(today) 
             ? NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
