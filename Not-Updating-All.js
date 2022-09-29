@@ -1,4 +1,5 @@
 let NotUpdatingIssues = [];
+let daysNotUpdating = 4;
 let SiteData =[
     {
       "ID": 604261,
@@ -2419,9 +2420,9 @@ function createOverlay() {
       overflow:hidden;
       z-index:1001;`;
 
-  _overlay.innerHTML = `<p class="title">Sites Not Updating | Count ${
+  _overlay.innerHTML = `<p class="title">Sites Not Updating <b>(${daysNotUpdating})</b> days | <b>Count ${
   NotUpdatingIssues.length
-  }| Last run: ${Date().toString().substr(4, 18)}</p>
+  } </b>| <b>Last run: ${Date().toString().substr(4, 17)}</b></p>
       <div style='display:flex;align-items:center;justify-content:center;' class="body">
       <style>
       info-overlay.title{
@@ -2445,7 +2446,7 @@ function createOverlay() {
       <td class="tg-0lax">Sys Voltage</td>
       <td class="tg-0lax">Hrs Not Updating</td>
       <td class="tg-0lax">Team Lead</td>
-      <td class="tg-0lax"><a download='Hybrid_Sites_Not_Updating.csv' id='download'> Download</a></td>
+      <td class="tg-0lax"><a download='Sites_Not_Updating.csv' id='download'> Download</a></td>
     </tr>
   </thead>
   <tbody>
