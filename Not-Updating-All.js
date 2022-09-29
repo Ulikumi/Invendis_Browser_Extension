@@ -2456,7 +2456,9 @@ function createOverlay() {
 }
 
 function showNotUpdating() {
-  console.log(NotUpdatingIssues)
+  //console.table(tableToJSON())
+ // return false
+  console.log(NotUpdatingIssues = [])
   let timeDiff = null;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
@@ -2466,14 +2468,10 @@ function showNotUpdating() {
         timeDiff =
           (new Date().getTime() - new Date(TimeStamp).getTime()) /
           (1000 * 60 * 60);
-        if (timeDiff > 1) {
-          let _site = SiteData.find((site) => site.ID == parseInt(SiteID));
+        if ((timeDiff > 1) && (timeDiff < 145) ) {
+          let _site = SiteData.find((site) => site.ID == SiteID);
           let name = _site.TL;
-          let date = new Date();
-         let today = date.toLocaleDateString()
-          let yesterday =  new Date(date.setDate(date.getDate() - 1)).toLocaleDateString()
-          TimeStamp.includes(yesterday) || TimeStamp.includes(today) 
-            ? NotUpdatingIssues.push({
+          NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
                 SiteName,
@@ -2482,13 +2480,12 @@ function showNotUpdating() {
                 name,
                 'Hrs':timeDiff
               })
-            : "";
         }
       
     }
   );
-  /* console.log(NotUpdatingIssues)
-  return false; */
+  console.table(NotUpdatingIssues)
+  // return false; 
   if (NotUpdatingIssues.length > 0) {
     let sortedIssues= NotUpdatingIssues.sort((a,b) =>{
       return (a.name.toLowerCase() > b.name.toLowerCase())?1:-1
