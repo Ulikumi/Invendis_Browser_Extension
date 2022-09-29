@@ -167,8 +167,6 @@ function displayIssuesOverlay(issues) {
   });
   document.querySelector(".body tbody").innerHTML = tpl;
 }
-
-
 //Drag implementation
 
 function dragElement(elmnt) {
