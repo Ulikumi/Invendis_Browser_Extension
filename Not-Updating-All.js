@@ -2457,10 +2457,9 @@ function createOverlay() {
 }
 
 function showNotUpdating() {
-  //console.table(tableToJSON())
- // return false
   console.log(NotUpdatingIssues = [])
   let timeDiff = null;
+  let name;
   document.querySelector(".info-overlay")
     ? document.querySelector(".info-overlay").remove()
     : "";
@@ -2470,8 +2469,8 @@ function showNotUpdating() {
           (new Date().getTime() - new Date(TimeStamp).getTime()) /
           (1000 * 60 * 60);
         if ((timeDiff > 1) && (timeDiff < 145) ) {
-          let _site = SiteData.find((site) => site.ID == SiteID);
-          let name = _site.TL;
+          let _site = SiteData.find(site => site.ID == SiteID);
+          if (_site)  name = _site.TL;
           NotUpdatingIssues.push({
                 SiteID,
                 TimeStamp,
@@ -2485,7 +2484,7 @@ function showNotUpdating() {
       
     }
   );
-  console.table(NotUpdatingIssues)
+  console.dir(NotUpdatingIssues)
   // return false; 
   if (NotUpdatingIssues.length > 0) {
     let sortedIssues= NotUpdatingIssues.sort((a,b) =>{
