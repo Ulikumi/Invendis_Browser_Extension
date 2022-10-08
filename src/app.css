@@ -1,0 +1,51 @@
+#table_id thead{
+    background-color:#9DBCEF;
+    position: sticky; 
+    top: 0;
+}
+
+
+#table_id thead th{
+border: 1px solid #9DBCEF;
+padding:10px;
+}
+
+#table_id tbody tr:nth-child(odd):hover{
+    color:black;
+    background-color:#393e46;
+  }
+  
+  #table_id{
+    margin-left:auto; 
+    margin-right:auto; 
+    border-collapse: collapse;
+   width:auto;
+   table-layout:auto;
+   border: 1px solid #9DBCEF;
+  }
+
+  .selected{
+    font-weight: bold;
+      background-color: #9595ab;
+      color: white;
+  }
+
+  #table_id tbody tr:hover{
+    color:white;
+    background-color:#393e46;
+  }
+
+  #table_id tbody tr td{
+border: 1px solid #9DBCEF;
+ padding:10px;
+  }
+  
+  .material-symbols-sharp.dg{
+    color:#1e549f;
+    }
+    .material-symbols-sharp.sob{
+    color:#dc2f2f ;
+    }
+    .material-symbols-sharp.mains{
+     color:#2772db;
+    }
