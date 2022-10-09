@@ -1,12 +1,15 @@
 insertLink()
-let SESSIONID = null
-let SitesData = [];
-const hostname = 'https://invendis.americantower.com/ATCghanaAPI/';
- import postData from './data';
+
+import postData from './data';
  import './app.css'
  let siteData = require('./site_data')
 let _sort = require('array-sort');
 const { SiteID } = require('./data');
+
+let SESSIONID = null
+let SitesData = [];
+const hostname = 'https://invendis.americantower.com/ATCghanaAPI/';
+ 
 
 function tableToJSON() {
   SitesData = []
@@ -17,11 +20,9 @@ function tableToJSON() {
      if (list.children[24].children[0].alt.includes('Alarm') &&  
          list.children[22].children[0].alt.includes('Alarm') &&
          list.children[34].children[0].alt.includes('Normal')) PowerIconToShow = 'SOB'
-
       else if ( list.children[24].children[0].alt.includes('Alarm') &&  
                 list.children[34].children[0].alt.includes('Alarm') &&
                 list.children[22].children[0].alt.includes('Normal')) PowerIconToShow = 'DG'
-
       else if ( list.children[24].children[0].alt.includes('Normal') &&  
                 list.children[34].children[0].alt.includes('Normal') &&
                 list.children[22].children[0].alt.includes('Normal')) PowerIconToShow = 'Mains'
@@ -46,8 +47,6 @@ function tableToJSON() {
       };
     })
 }
-
-
 
 async function start(){
   

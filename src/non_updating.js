@@ -2485,7 +2485,6 @@ function showNotUpdating() {
       
     }
   );
-  console.dir(NotUpdatingIssues)
   // return false; 
   if (NotUpdatingIssues.length > 0) {
     let sortedIssues= NotUpdatingIssues.sort((a,b) =>{
