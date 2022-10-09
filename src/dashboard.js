@@ -1,5 +1,6 @@
 insertLink()
 
+let eventListeners = [];
 import postData from './data';
  import './app.css'
  let siteData = require('./site_data')
