@@ -1,0 +1,30 @@
+{
+  "name": "Chrome Extension MV3",
+  "description": "Learning all about Chrome Extensions Manifest Version 3!",
+  "version": "0.1.0",
+  "manifest_version": 3,
+  "icons": {
+      "16": "./images/extion.png"
+  },
+  "content_scripts": [{
+    "matches": [ "https://invendis.americantower.com/aspx/DashBoard.aspx"],
+    "js": ["content-script.bundle.js"]
+}],
+  "background": {
+      "service_worker": "background.js"
+  },
+  "action": {
+      "default_icon": {
+          "16": "./images/extion.png"
+      }
+  },
+  "permissions": [
+      "storage",
+      "activeTab",
+      "scripting",
+      "tabs"
+  ],
+  "host_permissions": [
+      "https://invendis.americantower.com/aspx/DashBoard.aspx"
+  ]
+}
