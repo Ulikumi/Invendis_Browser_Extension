@@ -8,7 +8,7 @@ chrome.tabs.onActivated.addListener(async ({tabId})=>{
     if (_tab.status ==='complete' && /^https:\/\/invendis.americantower.com\/aspx\/DashBoard.aspx/.test(_tab.url)){
       chrome.scripting.executeScript({
         target:{tabId:tabId},
-        files:['jquery-3.6.1.min.js','content-script.js']
+        files:['jquery-3.6.1.min.js']
        })
        .then(()=>{
         console.log('Content Script Injected')
